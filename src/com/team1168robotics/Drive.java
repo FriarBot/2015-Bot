@@ -70,7 +70,9 @@ public class Drive {
         double leftY = controller.getRawAxis(2);
         double rightY = controller.getRawAxis(5);
         rightF.set(rightY);
-        rightB.set(leftY);
+        rightB.set(rightY);
+        leftF.set(leftY);
+        leftB.set(leftY);
     }
     
     /**
@@ -154,6 +156,13 @@ public class Drive {
         } else {
             leftB.set(leftBVal);
         }
+    }
+    
+    public static void auton(double left, double right) {
+    	rightF.set(right);
+        rightB.set(right);
+        leftF.set(left);
+        leftB.set(left);
     }
     
 }

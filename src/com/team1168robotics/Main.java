@@ -38,22 +38,26 @@ public class Main extends IterativeRobot {
     public void robotInit() {
         Drive.init();
         controller = new Joystick(1);
-    }
-    
+    }   
 
     /**
      * This function is called every time a packet is sent to the robot telling it to be in Teleoperated Enabled mode
      */
     public void teleopInit() {
         Drive.driveSys(controller);
-    }
-    
-    
+    }    
     
     /**
      * This function is called periodically each time the robot enters test mode.
      */
     public void testPeriodic() {
     	LiveWindow.run();
+    }
+    
+    /**
+     * This function is called exactly once when autonomous starts
+     */
+    public void autonomousInit(){
+    	Auton.reactive();
     }
 }
