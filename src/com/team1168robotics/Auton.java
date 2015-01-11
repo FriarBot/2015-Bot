@@ -5,8 +5,7 @@ import edu.wpi.first.wpilibj.Ultrasonic;
 public class Auton {
 	
 	private static Ultrasonic ultra;
-	private static final boolean UP = true;
-	private static final boolean DOWN = false;
+
 	
 	/**
 	 * Initializes data members
@@ -22,10 +21,10 @@ public class Auton {
 		while(ultra.getRangeInches() > 12) {
 			Drive.auton(.75, .75);
 		}
-		Lift.tote(UP);
+		Lift.tote(Main.UP);
 		Drive.auton(-.75, -.75);
-		Lift.tote(DOWN);
-		Drive.auton(-1, -.5);
+		Lift.tote(Main.DOWN);
+		Drive.auton(-.95, -.5);
 	}
 	
 	/**

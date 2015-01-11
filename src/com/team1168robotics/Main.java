@@ -28,8 +28,11 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  * LS: 9
  * RS: 10
  */
+
 public class Main extends IterativeRobot {
-    
+	
+	public static final boolean UP = true;
+	public static final boolean DOWN = false;    
     private Joystick controller;
    
     /**
@@ -41,14 +44,14 @@ public class Main extends IterativeRobot {
     }   
 
     /**
-     * This function is called every time a packet is sent to the robot telling it to be in Teleoperated Enabled mode
+     * This function is called periodically each time the robot enters teleoperated mode
      */
-    public void teleopInit() {
+    public void teleopPeriodic() {
         Drive.driveSys(controller);
     }    
     
     /**
-     * This function is called periodically each time the robot enters test mode.
+     * This function is called periodically each time the robot enters test mode
      */
     public void testPeriodic() {
     	LiveWindow.run();
