@@ -1,6 +1,7 @@
 package com.team1168robotics;
 
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -29,11 +30,12 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  * RS: 10
  */
 
-public class Main extends IterativeRobot {
+public class Robot extends IterativeRobot {
 	
 	public static final boolean UP = true;
 	public static final boolean DOWN = false;    
-    private Joystick controller;
+    private Joystick controller = new Joystick(1);
+    public CameraServer server;
    
     /**
      * This function is called exactly once when the competition starts
@@ -42,13 +44,21 @@ public class Main extends IterativeRobot {
         Drive.init();
         controller = new Joystick(1);
     }   
+    
+    public void camera(){
+    	 server = CameraServer.getInstance();
+         server.setQuality(50);
+         //the camera name (ex "cam0") can be found through the roborio web interface
+         server.startAutomaticCapture("cam0");
+    }
 
     /**
      * This function is called periodically each time the robot enters teleoperated mode
      */
     public void teleopPeriodic() {
         Drive.driveSys(controller);
-    }    
+        camera();
+    }
     
     /**
      * This function is called periodically each time the robot enters test mode

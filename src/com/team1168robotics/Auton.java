@@ -21,9 +21,9 @@ public class Auton {
 		while(ultra.getRangeInches() > 12) {
 			Drive.auton(.75, .75);
 		}
-		Lift.tote(Main.UP);
+		Lift.tote(Robot.UP);
 		Drive.auton(-.75, -.75);
-		Lift.tote(Main.DOWN);
+		Lift.tote(Robot.DOWN);
 		Drive.auton(-.95, -.5);
 	}
 	
