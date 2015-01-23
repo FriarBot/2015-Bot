@@ -5,7 +5,6 @@ import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-
 /**
  * Xbox controller axis index:
  * 
@@ -56,7 +55,8 @@ public class Robot extends IterativeRobot {
      * This function is called periodically each time the robot enters teleoperated mode
      */
     public void teleopPeriodic() {
-        Drive.driveSys(controller);
+        Drive.mecanum(controller);
+    	//Drive.tank(controller);
         camera();
     }
     

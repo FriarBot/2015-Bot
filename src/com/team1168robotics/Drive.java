@@ -39,10 +39,10 @@ public class Drive {
      * Initializes the data members
      */
     public static void init(){
-        rightF = new Talon(0);
-        rightB = new Talon(1);
-        leftF = new Talon(2);
-        leftB = new Talon(3);
+        rightF = new Talon(1);
+        rightB = new Talon(2);
+        leftF = new Talon(3);
+        leftB = new Talon(0);
         driveSys = 0;
     }
     
@@ -51,24 +51,24 @@ public class Drive {
      * then limits the values to be acceptable by the Talon set() method
      * @param controller The Joystick object the Xbox controller is hooked up to
      */    
-    private static void mecanum(Joystick controller){
-        double leftY = controller.getRawAxis(2);
+    public static void mecanum(Joystick controller){
+        double leftY = controller.getRawAxis(1);
         double rightX = controller.getRawAxis(4);
-        double leftX = controller.getRawAxis(1);
+        double leftX = controller.getRawAxis(0);
         
-        setRightF(leftY - rightX - leftX);
-        setRightB(leftY - rightX + leftX);
-        setLeftF(leftY + rightX + leftX);
-        setLeftB(leftY + rightX - leftX);        
+        setRightF(((leftY - rightX - leftX) * -1)/2);
+        setRightB(((leftY - rightX + leftX) * -1)/2);
+        setLeftF((leftY + rightX + leftX)/2);
+        setLeftB((leftY + rightX - leftX)/2);        
     }
     
     /**
      * Simple tank drive
      * @param controller The Joystick object the Xbox controller is hooked up to
      */    
-    private static void tank(Joystick controller) {
-        double leftY = controller.getRawAxis(2);
-        double rightY = controller.getRawAxis(5);
+    public static void tank(Joystick controller) {
+        double leftY = controller.getRawAxis(5);
+        double rightY = controller.getRawAxis(1) * -1;
         rightF.set(rightY);
         rightB.set(rightY);
         leftF.set(leftY);
