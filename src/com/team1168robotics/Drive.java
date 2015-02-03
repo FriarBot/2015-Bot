@@ -51,10 +51,10 @@ public class Drive {
      * then limits the values to be acceptable by the Talon set() method
      * @param controller The Joystick object the Xbox controller is hooked up to
      */    
-    public static void mecanum(Joystick controller){
-        double leftY = controller.getRawAxis(1);
-        double rightX = controller.getRawAxis(4);
-        double leftX = controller.getRawAxis(0);
+    public static void mecanum(){
+        double leftY = Robot.xboxCon.getRawAxis(1);
+        double rightX = Robot.xboxCon.getRawAxis(4);
+        double leftX = Robot.xboxCon.getRawAxis(0);
         
         setRightF(((leftY - rightX - leftX) * -1)/2);
         setRightB(((leftY - rightX + leftX) * -1)/2);
@@ -66,9 +66,9 @@ public class Drive {
      * Simple tank drive
      * @param controller The Joystick object the Xbox controller is hooked up to
      */    
-    public static void tank(Joystick controller) {
-        double leftY = controller.getRawAxis(5);
-        double rightY = controller.getRawAxis(1) * -1;
+    public static void tank() {
+        double leftY = Robot.xboxCon.getRawAxis(5);
+        double rightY = Robot.xboxCon.getRawAxis(1) * -1;
         rightF.set(rightY);
         rightB.set(rightY);
         leftF.set(leftY);
@@ -80,25 +80,25 @@ public class Drive {
      * Uses an int for expansion ability if more driving systems are added
      * @param controller The Joystick object the Xbox controller is hooked up to
      */
-    public static void driveSys(Joystick controller){
-        if(controller.getRawButton(1)){
+    public static void driveSys(Joystick xboxCon){
+        if(xboxCon.getRawButton(1)){
             driveSys++;
         }
         if(driveSys > 1){
             driveSys = 0;
         }
-        driveOpt(controller);
+        driveOpt();
     }
     
     /**
      * Determines which drive system to use based on the value of driveSys
      * @param controller The Joystick object the Xbox controller is hooked up to
      */
-    private static void driveOpt(Joystick controller) {
+    private static void driveOpt() {
         if(driveSys == 0){
-            mecanum(controller);
+            mecanum();
         } else if (driveSys == 1) {
-            tank(controller);
+            tank();
         }
     }
     

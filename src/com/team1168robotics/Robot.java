@@ -3,8 +3,12 @@ package com.team1168robotics;
 
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.DigitalOutput;
+import edu.wpi.first.wpilibj.Servo;
+
 /**
  * Xbox controller axis index:
  * 
@@ -30,10 +34,9 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  */
 
 public class Robot extends IterativeRobot {
-	
-	public static final boolean UP = true;
-	public static final boolean DOWN = false;    
-    private Joystick controller = new Joystick(1);
+ 
+    public static Joystick xboxCon = new Joystick(1);
+    public static Joystick opCon = new Joystick(0);
     public CameraServer server;
    
     /**
@@ -41,7 +44,7 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
         Drive.init();
-        controller = new Joystick(1);
+    	camera();
     }   
     
     public void camera(){
@@ -50,14 +53,16 @@ public class Robot extends IterativeRobot {
          //the camera name (ex "cam0") can be found through the roborio web interface
          server.startAutomaticCapture("cam0");
     }
-
+    
+    
     /**
      * This function is called periodically each time the robot enters teleoperated mode
      */
     public void teleopPeriodic() {
-        Drive.mecanum(controller);
-    	//Drive.tank(controller);
-        camera();
+        //Drive.mecanum();
+    	//Drive.tank();
+    	//Ultra.ultra();
+    	Lift.tote();
     }
     
     /**
@@ -72,5 +77,40 @@ public class Robot extends IterativeRobot {
      */
     public void autonomousInit(){
     	Auton.reactive();
+    }
+    
+    public void dummy(){
+    	DigitalOutput out0 = new DigitalOutput(0);
+    	DigitalOutput out1 = new DigitalOutput(1);
+    	DigitalOutput out2 = new DigitalOutput(2);
+    	DigitalOutput out3 = new DigitalOutput(3);
+    	DigitalOutput out4 = new DigitalOutput(4);
+    	DigitalOutput out5 = new DigitalOutput(5);
+    	DigitalOutput out6 = new DigitalOutput(6);
+    	DigitalOutput out7 = new DigitalOutput(7);
+    	DigitalOutput out8 = new DigitalOutput(8);
+    	DigitalOutput out9 = new DigitalOutput(9);
+    	
+    	out1.set(false);
+    	out3.set(false);
+    	out5.set(false);
+    	out7.set(false);
+    	out9.set(false);
+    	
+    	out0.set(true);
+    	out2.set(true);
+    	out4.set(true);
+    	out6.set(true);
+    	out8.set(false);
+    }
+    
+    public void servo(){
+    	Servo servo = new Servo(5);
+    	servo.setAngle(60);
+    }
+    
+    public void dummyMotor(){
+    	Jaguar jag = new Jaguar(9);
+    	jag.set(1);
     }
 }
