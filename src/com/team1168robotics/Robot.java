@@ -59,10 +59,9 @@ public class Robot extends IterativeRobot {
      * This function is called periodically each time the robot enters teleoperated mode
      */
     public void teleopPeriodic() {
-        //Drive.mecanum();
-    	//Drive.tank();
-    	//Ultra.ultra();
-    	Lift.tote();
+        Drive.mecanum();
+       	Lift.tote();
+    	Lift.arms();
     }
     
     /**
@@ -76,7 +75,6 @@ public class Robot extends IterativeRobot {
      * This function is called exactly once when autonomous starts
      */
     public void autonomousInit(){
-    	Auton.reactive();
     }
     
     public void dummy(){

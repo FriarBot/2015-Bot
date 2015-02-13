@@ -159,8 +159,8 @@ public class Drive {
     }
     
     public static void auton(double left, double right) {
-    	rightF.set(right);
-        rightB.set(right);
+    	rightF.set(-right);
+        rightB.set(-right);
         leftF.set(left);
         leftB.set(left);
     }

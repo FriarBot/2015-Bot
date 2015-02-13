@@ -5,8 +5,8 @@ import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.DigitalInput;
 
 public class Lift {
-	public static Solenoid armsOut;
-	public static Solenoid armsIn;
+	public static Solenoid armsOut = new Solenoid(0);
+	public static Solenoid armsIn = new Solenoid(1);
 	public static Jaguar winch = new Jaguar(4);
 	public static DigitalInput lsb = new DigitalInput(9);
 	public static DigitalInput lst;
@@ -30,6 +30,16 @@ public class Lift {
 			winch.set(0);
 		} else {
 			winch.set(Robot.opCon.getRawAxis(1));
+		}
+	}
+	
+	public static void auton(int up){
+		if(up == 1){
+			winch.set(.5);
+		} else if (up == 2){
+			winch.set(-.5);
+		} else {
+			winch.set(0);
 		}
 	}
 
